@@ -14,9 +14,9 @@ public class FileStore {
 
     private Long lastUsedId = 0L;
 
-    public void createFile(String name, byte[] content) {
+    public void createFile(String name, String type, byte[] content) {
         Long id = getNextId();
-        File newFile = new File(id, name, content);
+        File newFile = new File(id, name, type, content);
         fileMap.put(id, newFile);
     }
 

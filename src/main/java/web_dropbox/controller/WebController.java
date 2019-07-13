@@ -40,7 +40,8 @@ public class WebController {
             try {
                 byte[] fileContent = file.getBytes();
                 String fileName = file.getOriginalFilename();
-                store.createFile(fileName, fileContent);
+                String fileType = file.getContentType();
+                store.createFile(fileName, fileType, fileContent);
                 // System.out.println("file_loaded " + fileName);
                 return "redirect:/";
             } catch (Exception e) {
@@ -57,6 +58,7 @@ public class WebController {
                              @PathVariable Long id) {
         if (store.exists(id)) {
             File file = store.getFile(id);
+            response.setContentType(file.getType());
             response.addHeader("Content-Disposition", "attachment; filename=" + file.getName());
             try {
                 response.getOutputStream().write(file.getContent());

@@ -6,13 +6,15 @@ public class File {
     public Long id;
     public String name;
     public Date created;
+    private String type;
     public byte[] content;
 
-    public File(Long id, String name, byte[] content) {
+    public File(Long id, String name, String type, byte[] content) {
         this.id = id;
         this.setName(name);
         this.setContent(content);
         this.created = new Date();
+        this.setType(type);
     }
 
 
@@ -30,5 +32,13 @@ public class File {
 
     public void setContent(byte[] content) {
         this.content = content;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
