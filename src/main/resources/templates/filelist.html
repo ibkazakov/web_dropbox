@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Files</h1>
+<table>
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>loaded</td>
+        <td>download_link</td>
+        <td>delete_link</td>
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="file : ${files}">
+            <td th:text="${file.id}"></td>
+            <td th:text="${file.name}"></td>
+            <td th:text="${file.created}"></td>
+            <td>
+                <a th:href="@{'/download/' + ${file.id}}">
+                    download
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/delete/' + ${file.id}}">
+                    delete
+                </a>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+<br />
+<br />
+<br />
+
+<form method="POST" enctype="multipart/form-data"
+      action="/upload">
+    <input type="file" name="file"><br />
+    <input type="submit" value="Upload">
+</form>
+
+</body>
+</html>
